@@ -1,0 +1,62 @@
+﻿@model QDevSmartCare.Web.Controllers.ProjectCreationViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal">
+        <h4>Create your project</h4>
+        <hr />
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProjectName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProjectName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProjectName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DatabaseConnection, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DatabaseConnection, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DatabaseConnection, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-10">
+                <h6>
+                    Format: <span class="anchorClick">Data Source=serverName;Initial Catalog=databaseName;user id=userId;password=Password;</span>
+                    <a class="fa fa-copy copy showPointer"></a>
+                </h6>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProjectType, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                <label>
+                    Web Api
+                    <input type="radio" value="2" name="ProjectType" class="form-control" />
+                </label>
+                <br />
+                <label>
+                    Web
+                    <input type="radio" value="1" name="ProjectType" checked="checked" class="form-control" />
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+                @ViewBag.message
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
